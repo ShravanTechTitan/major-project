@@ -100,10 +100,10 @@ app.use("/",userRouter)
 
 
 
-// // Home
-// app.get("/", (req, res) => {
-//     res.send("Hi, I'm your route.");
-// });
+// Home
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
 
 
 
