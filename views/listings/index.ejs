@@ -1,0 +1,113 @@
+<%- layout("/layouts/boilerplate.ejs") %>
+  <style>
+    #filters{
+      display: flex;
+      flex-wrap: warp;
+      align-items: center;
+    }
+    .filter{
+      text-align: center;
+      margin-right: 2rem;
+      margin-top: 1rem;
+      opacity: 0.7;
+    }
+    .filter:hover{
+      opacity: 1;
+      cursor: pointer;
+    }
+    .taxinfo{
+      display: none;
+    }
+    .tax-toggle{
+      border: 2px solid black;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      height: 3.2rem;
+      padding: 1rem;
+      margin-left: 4rem ;
+    }
+
+
+  </style>
+<body>
+  <div id="filters">
+    <div class="filter">
+      <div> <i class="fa-solid fa-fire"></i></div>
+      <div>trending</div>
+
+    </div>
+  
+    <div class="filter">
+      <div> <i class="fa-solid fa-bed"></i></div>
+      <div>room</div>
+
+    </div>
+    <div class="filter">
+      <div> <i class="fa-solid fa-mountain-city"></i></div>
+      <div>iconic cities</div>
+
+    </div>
+  
+    <div class="filter">
+      <div> <i class="fa-solid fa-mountain"></i></div>
+      <div>mountain</div>
+
+    </div>
+    <div class="filter">
+      <div> <i class="fa-brands fa-fort-awesome"></i></div>
+      <div>castles</div>
+
+    </div>
+  
+    <div class="filter">
+      <div> <i class="fa-solid fa-person-swimming"></i></div>
+      <div>amazing pools</div>
+
+    </div>
+    <div class="filter">
+      <div><i class="fa-solid fa-campground"></i></div>
+      <div>campground</div>
+
+    </div>
+  
+    <div class="filter">
+      <div> <i class="fa-solid fa-tractor"></i></div>
+      <div>Farm</div>
+
+    </div>
+
+    <div class="tax-toggle">
+      <div class="form-check-reverse form-switch">
+  <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+  <label class="form-check-label" for="switchCheckDefault">Display totle after taxes</label>
+</div>
+    </div>
+  </div>
+    <div class="row row-cols-lg-3 row-cols-md-2 mt-3 row-cols-sm-1"> 
+    <%for(listings of allListings){%>
+            <div class="card listing-card " ><a href="/listings/<%=listings._id%>" class="listing-link">
+                <img src="<%=listings.image.url%>" class="card-img-top" alt="..." style="height:20rem;"">
+                <div class="card-img-overlay"></div>
+                <div class="card-body">
+                  <p class="card-text"> <b><%= listings.title %></b> <br><b><u>&#x20B9;<%= listings.price ? listings.price.toLocaleString("en-IN") : "N/A" %></u><i class="taxinfo">&nbsp;+ 18 % GST</i></b> for night</p>
+                </div></a>
+              </div>
+        
+      <%}%>
+    </div>
+<script>
+  let taxToggle = document.getElementById("switchCheckDefault");
+  taxToggle.addEventListener("click",()=>{
+    let taxinfo = document.getElementsByClassName("taxinfo")
+    for(info of taxinfo){
+      if(info.style.display != "inline"){
+        info.style.display = "inline"
+      }else{
+        info.style.display = "none"
+      }
+    }
+  })
+</script>
+
+</body>
